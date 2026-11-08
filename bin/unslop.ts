@@ -26,7 +26,7 @@ class UsageError extends Error {}
 const HELP = `unslop ${CLI_VERSION} — studio-grade design constraints for coding agents
 
 USAGE
-  npx unslop <command> [options]
+  npx github:avivgerz-hue/unslop <command> [options]
 
 COMMANDS
   init [--preset <name>]       Install agent rules and .mcp.json in this project
@@ -75,7 +75,7 @@ EXIT STATUS
   1  Audit found violations, score was below --fail-under, or command failed
   2  Invalid command-line usage
 
-Run "npx unslop presets" to compare built-in design systems.`;
+Run "npx github:avivgerz-hue/unslop presets" to compare built-in design systems.`;
 
 function parse<const Options extends NonNullable<Parameters<typeof parseArgs>[0]>["options"]>(
   command: string,
@@ -168,7 +168,7 @@ export async function runCli(argv: string[] = process.argv.slice(2), context: CL
           "NAME              MODE    DESCRIPTION",
           ...rows.map((row) => row.join("  ")),
           "",
-          "Inspect a token contract: npx unslop presets linear-dark",
+          "Inspect a token contract: npx github:avivgerz-hue/unslop presets linear-dark",
         ].join("\n"));
       }
       return 0;
@@ -194,7 +194,7 @@ export async function runCli(argv: string[] = process.argv.slice(2), context: CL
           `Installed the ${result.preset} design system:`,
           ...result.files.map((file) => `  ${file.status.padEnd(9)} ${file.path}`),
           "",
-          "Next: run npx unslop audit . before your agent writes more UI.",
+          "Next: run npx github:avivgerz-hue/unslop audit . before your agent writes more UI.",
         ].join("\n"));
       }
       return 0;
@@ -314,7 +314,7 @@ export async function runCli(argv: string[] = process.argv.slice(2), context: CL
   } catch (error) {
     stderr(`unslop: ${error instanceof Error ? error.message : String(error)}`);
     if (error instanceof UsageError) {
-      stderr("Run npx unslop help for usage.");
+      stderr("Run npx github:avivgerz-hue/unslop help for usage.");
       return 2;
     }
     return 1;

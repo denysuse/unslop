@@ -816,7 +816,7 @@ export function createPresetFromDNA(dna, requestedName = "extracted-dna") {
             "Reuse the compiled shadow tokens instead of introducing raw one-off box shadows.",
             `Keep all layout spacing on the compiled ${spacingBase(spacingScale)}px base grid.`,
             "Do not add purple gradients, neon glows, generic emoji card grids, or decorative animation.",
-            `Run npx unslop audit after implementation and compare new tokens against ${dna.source}.`,
+            `Run npx github:avivgerz-hue/unslop audit after implementation and compare new tokens against ${dna.source}.`,
         ],
     };
     return validatePreset(preset);

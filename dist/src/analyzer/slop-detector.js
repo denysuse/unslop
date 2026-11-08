@@ -753,7 +753,7 @@ export function generateRefactoringPrompt(violations, score = calculateDesignInt
     for (const violation of violations) {
         lines.push("", `### ${violation.file}:${violation.line}:${violation.column} — ${violation.ruleId}`, `- Problem: ${violation.message}`, `- Evidence: \`${violation.evidence.replace(/`/g, "\\`")}\``, `- Change: ${violation.recommendation}`);
     }
-    lines.push("", "## Acceptance criteria", "- Use one coherent type scale and no more than three font weights per component tree.", "- Put display headings on a tight tracking token and all numeric UI on tabular figures.", "- Derive spacing and radii from semantic tokens with no same-element utility conflicts.", "- Replace heavy raw elevation with subtle borders and intentional layered tokens.", "- Run `npx unslop audit .` and manually verify contrast, focus, responsive layout, and reduced motion.");
+    lines.push("", "## Acceptance criteria", "- Use one coherent type scale and no more than three font weights per component tree.", "- Put display headings on a tight tracking token and all numeric UI on tabular figures.", "- Derive spacing and radii from semantic tokens with no same-element utility conflicts.", "- Replace heavy raw elevation with subtle borders and intentional layered tokens.", "- Run `npx github:avivgerz-hue/unslop audit .` and manually verify contrast, focus, responsive layout, and reduced motion.");
     return lines.join("\n");
 }
 async function collectFiles(target, ignored) {

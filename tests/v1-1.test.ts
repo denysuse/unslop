@@ -182,7 +182,7 @@ describe("merge-safe MCP project configuration", () => {
     expect(config.mcpServers.other).toEqual(existing.mcpServers.other);
     expect(config.mcpServers.unslop).toEqual({
       command: "npx",
-      args: ["-y", `unslop@${UNSLOP_VERSION}`, "mcp"],
+      args: ["-y", `github:avivgerz-hue/unslop`, "mcp"],
       env: { KEEP: "yes" },
     });
     const second = await installUnslop({ cwd: directory, preset: "linear-dark" });

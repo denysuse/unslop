@@ -3,7 +3,6 @@
 **Your agent can write the code. Stop letting it ship the same AI interface.**
 
 [![CI](https://github.com/avivgerz-hue/unslop/actions/workflows/ci.yml/badge.svg)](https://github.com/avivgerz-hue/unslop/actions/workflows/ci.yml)
-[![npm version](https://img.shields.io/npm/v/unslop.svg)](https://www.npmjs.com/package/unslop)
 [![Node.js 20.19+](https://img.shields.io/badge/node-%3E%3D20.19-3c873a)](https://nodejs.org/)
 [![MIT license](https://img.shields.io/badge/license-MIT-111111)](LICENSE)
 
@@ -13,8 +12,10 @@
 
 Works with **Claude Code, OpenAI Codex, Cursor, Windsurf, Cline**, and any agent that reads project instructions.
 
+> **Install from GitHub, not npm.** The name `unslop` on the npm registry belongs to a different, unrelated project (a Rust code-duplication detector by another author). Running `npx unslop` installs *that* package, not this one. Until this project is published on npm under its own name or scope, run it from GitHub: `npx github:avivgerz-hue/unslop ...`.
+
 ```bash
-npx unslop init
+npx github:avivgerz-hue/unslop init
 ```
 
 That one command installs the `linear-dark` design contract into `.claude/skills/unslop/SKILL.md`, `CLAUDE.md`, `AGENTS.md`, `.cursorrules`, `.windsurfrules`, and `.clinerules`, then merges the native server into `.mcp.json`. Existing instructions and unrelated MCP servers are preserved.
@@ -54,7 +55,7 @@ BEFORE: probabilistic taste                 AFTER: enforceable design physics
 ### 1. Choose a design system
 
 ```bash
-npx unslop init --preset linear-dark
+npx github:avivgerz-hue/unslop init --preset linear-dark
 ```
 
 ```text
@@ -67,7 +68,7 @@ Installed the linear-dark design system:
   created   .clinerules
   created   .mcp.json
 
-Next: run npx unslop audit . before your agent writes more UI.
+Next: run npx github:avivgerz-hue/unslop audit . before your agent writes more UI.
 ```
 
 Then ask your agent:
@@ -77,7 +78,7 @@ Then ask your agent:
 ### 2. Audit the interface
 
 ```bash
-npx unslop audit src
+npx github:avivgerz-hue/unslop audit src
 ```
 
 ```text
@@ -94,10 +95,10 @@ Design Integrity Score: 86/100 (B)
 The full output also contains a copy-ready refactoring prompt. Machine-readable output is one flag away:
 
 ```bash
-npx unslop audit . --json
-npx unslop audit . --prompt
-npx unslop audit . --fail-under 90
-npx unslop audit . --no-fail
+npx github:avivgerz-hue/unslop audit . --json
+npx github:avivgerz-hue/unslop audit . --prompt
+npx github:avivgerz-hue/unslop audit . --fail-under 90
+npx github:avivgerz-hue/unslop audit . --no-fail
 ```
 
 By default, an audit exits `1` when it finds violations and `0` when clean. Invalid usage exits `2`. Unsupported or empty directories still produce a valid report with zero scanned files.
@@ -107,13 +108,13 @@ By default, an audit exits `1` when it finds violations and `0` when clean. Inva
 From a local stylesheet:
 
 ```bash
-npx unslop extract ./tokens.css --name acme -o .claude/skills/unslop/SKILL.md
+npx github:avivgerz-hue/unslop extract ./tokens.css --name acme -o .claude/skills/unslop/SKILL.md
 ```
 
 From a live URL:
 
 ```bash
-npx unslop extract https://example.com --name example --json -o design-dna.json
+npx github:avivgerz-hue/unslop extract https://example.com --name example --json -o design-dna.json
 ```
 
 The extractor inventories:
@@ -130,7 +131,7 @@ Markdown output is a complete Claude-compatible `SKILL.md`. `--json` emits both 
 ### 4. Export Tailwind v4 and framework-agnostic tokens
 
 ```bash
-npx unslop export-tokens --preset linear-dark --out tokens.css
+npx github:avivgerz-hue/unslop export-tokens --preset linear-dark --out tokens.css
 ```
 
 The generated stylesheet contains three complementary contracts:
@@ -161,8 +162,8 @@ Or without Tailwind:
 Compile tokens directly from extracted DNA instead of a built-in preset:
 
 ```bash
-npx unslop export-tokens --source https://example.com --name example --out example-tokens.css
-npx unslop export-tokens --source ./tokens.css --name acme
+npx github:avivgerz-hue/unslop export-tokens --source https://example.com --name example --out example-tokens.css
+npx github:avivgerz-hue/unslop export-tokens --source ./tokens.css --name acme
 ```
 
 `--preset` and `--source` are mutually exclusive. Without `--out`, CSS is written to stdout.
@@ -172,7 +173,7 @@ npx unslop export-tokens --source ./tokens.css --name acme
 Start the zero-dependency Model Context Protocol server over stdio:
 
 ```bash
-npx unslop@1.2.0 mcp
+npx github:avivgerz-hue/unslop mcp
 ```
 
 `init` creates or updates this project configuration automatically:
@@ -182,7 +183,7 @@ npx unslop@1.2.0 mcp
   "mcpServers": {
     "unslop": {
       "command": "npx",
-      "args": ["-y", "unslop@1.2.0", "mcp"]
+      "args": ["-y", "github:avivgerz-hue/unslop", "mcp"]
     }
   }
 }
@@ -191,7 +192,7 @@ npx unslop@1.2.0 mcp
 The merge preserves unrelated entries in `mcpServers`, other top-level settings, and custom fields on the unslop entry. Invalid JSON is rejected rather than overwritten. Claude Code can also register the server explicitly:
 
 ```bash
-claude mcp add --scope project unslop -- npx -y unslop@1.2.0 mcp
+claude mcp add --scope project unslop -- npx -y github:avivgerz-hue/unslop mcp
 ```
 
 For Claude Desktop, add the same `mcpServers.unslop` entry to the application's MCP configuration. Cursor reads project `.mcp.json`; Codex and other MCP-compatible clients can launch the same stdio command.
@@ -240,9 +241,9 @@ These files describe the project for registry indexing; their presence does not 
 Inspect every token and law before choosing:
 
 ```bash
-npx unslop presets
-npx unslop presets swiss-grid
-npx unslop presets apple-glass --json
+npx github:avivgerz-hue/unslop presets
+npx github:avivgerz-hue/unslop presets swiss-grid
+npx github:avivgerz-hue/unslop presets apple-glass --json
 ```
 
 ## What the audit detects
@@ -294,7 +295,7 @@ Each generated agent-rule file contains an `unslop` managed block. Running `init
 
 ### OpenAI Codex
 
-Codex reads `AGENTS.md`. Keep the generated file at the repository root and ask Codex to run `npx unslop audit .` after implementing UI.
+Codex reads `AGENTS.md`. Keep the generated file at the repository root and ask Codex to run `npx github:avivgerz-hue/unslop audit .` after implementing UI.
 
 ### Cursor, Windsurf, and Cline
 

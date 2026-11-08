@@ -10,9 +10,9 @@ You are not asked to make an interface merely “modern.” You are asked to mak
 ## Activate the design system
 
 1. If the project contains an unslop managed rule block, its preset tokens are the source of truth.
-2. If no preset is installed, run `npx unslop init` or ask which built-in preset fits the product. Do not improvise a second token system.
+2. If no preset is installed, run `npx github:avivgerz-hue/unslop init` or ask which built-in preset fits the product. Do not improvise a second token system.
 3. Inspect existing semantic components, tokens, content hierarchy, and interaction patterns before writing UI.
-4. Run `npx unslop audit .` before and after frontend work. Turn each reported `file:line` into a concrete refactor; never suppress a rule to improve the score.
+4. Run `npx github:avivgerz-hue/unslop audit .` before and after frontend work. Turn each reported `file:line` into a concrete refactor; never suppress a rule to improve the score.
 
 ## The anti-slop contract
 
@@ -70,7 +70,7 @@ You are not asked to make an interface merely “modern.” You are asked to mak
 2. **Compose:** define the information hierarchy and responsive grid before choosing effects.
 3. **Tokenize:** map every color, font, size, radius, shadow, and spacing decision to the selected preset.
 4. **Implement:** build semantic, responsive, keyboard-accessible components with complete states.
-5. **Audit:** run `npx unslop audit .` and resolve all findings at their exact locations.
+5. **Audit:** run `npx github:avivgerz-hue/unslop audit .` and resolve all findings at their exact locations.
 6. **Verify:** inspect the rendered result at narrow and wide viewports; test long content, large numbers, zoom, contrast, focus, and reduced motion.
 
 ## Native MCP and token workflows
@@ -84,8 +84,8 @@ When the unslop MCP server is connected, prefer its deterministic tools over rei
 For component implementation, generate a framework-compatible token contract instead of inventing values:
 
 ```bash
-npx unslop export-tokens --preset linear-dark --out tokens.css
-npx unslop export-tokens --source ./tokens.css --name extracted --out tokens.css
+npx github:avivgerz-hue/unslop export-tokens --preset linear-dark --out tokens.css
+npx github:avivgerz-hue/unslop export-tokens --source ./tokens.css --name extracted --out tokens.css
 ```
 
 The output includes Tailwind v4 `@theme`, standard `:root` variables, and `.dark` overrides. Map Tailwind utilities to the generated `@theme` tokens. In other frameworks, consume semantic variables such as `--surface-0`, `--text-primary`, `--border-subtle`, `--font-display`, and `--shadow-md` directly. Preserve the generated token names rather than creating a competing scale.
@@ -99,11 +99,11 @@ Use the generated refactoring brief as an engineering checklist. Preserve behavi
 ## Useful commands
 
 ```bash
-npx unslop init --preset linear-dark
-npx unslop mcp
-npx unslop audit .
-npx unslop audit src --json
-npx unslop extract https://example.com --name example -o .claude/skills/unslop/SKILL.md
-npx unslop export-tokens --preset linear-dark --out tokens.css
-npx unslop presets
+npx github:avivgerz-hue/unslop init --preset linear-dark
+npx github:avivgerz-hue/unslop mcp
+npx github:avivgerz-hue/unslop audit .
+npx github:avivgerz-hue/unslop audit src --json
+npx github:avivgerz-hue/unslop extract https://example.com --name example -o .claude/skills/unslop/SKILL.md
+npx github:avivgerz-hue/unslop export-tokens --preset linear-dark --out tokens.css
+npx github:avivgerz-hue/unslop presets
 ```

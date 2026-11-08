@@ -473,7 +473,7 @@ describe("CLI", () => {
   }
 
   it("provides help, version, preset inspection, and usage errors", async () => {
-    expect((await invoke([])).stdout).toContain("npx unslop <command>");
+    expect((await invoke([])).stdout).toContain("npx github:avivgerz-hue/unslop <command>");
     expect((await invoke(["--version"])).stdout.trim()).toBe(CLI_VERSION);
     const presets = await invoke(["presets", "--json"]);
     expect(presets.code).toBe(0);
@@ -493,7 +493,7 @@ describe("CLI", () => {
     const mcp = JSON.parse(await readFile(join(directory, ".mcp.json"), "utf8"));
     expect(mcp.mcpServers.unslop).toEqual({
       command: "npx",
-      args: ["-y", `unslop@${UNSLOP_VERSION}`, "mcp"],
+      args: ["-y", `github:avivgerz-hue/unslop`, "mcp"],
     });
   });
 

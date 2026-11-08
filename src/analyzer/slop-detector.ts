@@ -963,7 +963,7 @@ export function generateRefactoringPrompt(
     "- Put display headings on a tight tracking token and all numeric UI on tabular figures.",
     "- Derive spacing and radii from semantic tokens with no same-element utility conflicts.",
     "- Replace heavy raw elevation with subtle borders and intentional layered tokens.",
-    "- Run `npx unslop audit .` and manually verify contrast, focus, responsive layout, and reduced motion.",
+    "- Run `npx github:avivgerz-hue/unslop audit .` and manually verify contrast, focus, responsive layout, and reduced motion.",
   );
   return lines.join("\n");
 }
